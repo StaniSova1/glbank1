@@ -5,10 +5,14 @@
  */
 package ui;
 
+import ui.panels.PanelInfo;
+import ui.panels.PanelAccounts;
+import ui.panels.PanelTransaction;
 import glbank.Client;
 import glbank.Employee;
 import glbank.database.ConnectionProvider;
 import java.util.List;
+import ui.panels.PanelCards;
 
 /**
  *
@@ -17,10 +21,14 @@ import java.util.List;
 public class MainForm extends javax.swing.JFrame {
     private int idemp;
     private List<Client> list;
+            
     private ConnectionProvider conn;
+    /**
+     * Creates new form MainForm
+     */
     public MainForm(int idemp) {
         initComponents();
-        this.idemp =idemp;
+        this.idemp = idemp;
         conn=new ConnectionProvider();
         initForm();
     }
@@ -32,7 +40,7 @@ public class MainForm extends javax.swing.JFrame {
     }
     
     private void printEmployeeName(){
-        Employee employee =conn.getEmployee(idemp);
+        Employee employee = conn.getEmployee(idemp);
         if(employee!=null){
             String name=employee.getFirstname()+" "+employee.getLastname();
             lblEmployeeName.setText("Logged in user: "+name);
@@ -169,7 +177,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void menuChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuChangePasswordActionPerformed
         // TODO add your handling code here:
-        ChangePasswordForm changePasswordForm =new ChangePasswordForm(this,true,idemp);
+        ChangePasswordForm changePasswordForm = new ChangePasswordForm(this, true, idemp);
         changePasswordForm.setVisible(true);
     }//GEN-LAST:event_menuChangePasswordActionPerformed
 
@@ -181,19 +189,27 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        NewClientForm newClientForm =new NewClientForm(this,true,idemp);
+        NewClientForm newClientForm=new NewClientForm(this,true,idemp);
         newClientForm.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void comboListOfAllClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboListOfAllClientsActionPerformed
         // TODO add your handling code here:
-        int index =comboListOfAllClients.getSelectedIndex();
+        int index=comboListOfAllClients.getSelectedIndex();
         jTabbedPane1.removeAll();
-        if(index > 0){
-            int idc =list.get(index-1).getIdc();
-            Client client =new ConnectionProvider().getClient(idc);
-            PanelInfo jPanelInfo =new PanelInfo(client);
-            jTabbedPane1.add("Information",jPanelInfo);
+        if(index>0){
+            
+            int idc = list.get(index-1).getIdc();
+            Client client=new ConnectionProvider().getClient(idc);
+            PanelInfo jPanelInfo = new PanelInfo(client);
+            jTabbedPane1.add("Information", jPanelInfo);
+            PanelAccounts jPanelAccounts=new PanelAccounts(idc);
+            jTabbedPane1.add("Accounts", jPanelAccounts);
+            PanelTransaction jPanelTransaction=new PanelTransaction();
+            jTabbedPane1.add("Transactions", jPanelTransaction);
+            PanelCards jPanelCards = new PanelCards();
+            jTabbedPane1.add("Cards", jPanelCards);
+            
         }
     }//GEN-LAST:event_comboListOfAllClientsActionPerformed
 
@@ -215,7 +231,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuExit;
     // End of variables declaration//GEN-END:variables
 
-    private void showListOfClients(){
+    private void showListOfClients() {
         list = new ConnectionProvider().getListOfAllClients();
         if(list!=null && list.size()>0){
             for(Client client : list){
@@ -226,6 +242,9 @@ public class MainForm extends javax.swing.JFrame {
         }
     }
 
-    private void initTabs() { 
+    private void initTabs() {
+        
+       
+        
     }
 }

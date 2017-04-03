@@ -13,12 +13,16 @@ import java.util.Date;
  *
  * @author client
  */
-public class NewClientForm extends javax.swing.JDialog{
+public class NewClientForm extends javax.swing.JDialog {
+
     private int idemp;
-    public NewClientForm(java.awt.Frame parent,boolean modal,int idemp){
+    /**
+     * Creates new form NewClientForm
+     */
+    public NewClientForm(java.awt.Frame parent, boolean modal, int idemp) {
         super(parent, modal);
         initComponents();
-        this.idemp =idemp;
+        this.idemp=idemp;
         lblError.setVisible(false);
     }
 
@@ -267,47 +271,51 @@ public class NewClientForm extends javax.swing.JDialog{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String firstname =txtFirstName.getText().trim();
-        String lastname =txtLastName.getText().trim();
-        String email =txtEmail.getText().trim();
-        String street =txtStreet.getText().trim();
-        String numStr =txtNumber.getText().trim();
+        String firstname=txtFirstName.getText().trim();
+        String lastname=txtLastName.getText().trim();
+        String email=txtEmail.getText().trim();
+        String street=txtStreet.getText().trim();
+        String numStr=txtNumber.getText().trim();
+        
         if(numStr.equals(""))
-            numStr ="0";
-        boolean isNumeric =numStr.chars().allMatch(Character::isDigit);
+            numStr="0";
+        boolean isNumeric = numStr.chars().allMatch( Character::isDigit );
         int num;
-        if(isNumeric) num =Integer.parseInt(numStr); 
-        else num =0;
-        String city =txtCity.getText().trim();
-        String postcode =txtPostcode.getText().trim();
+        if(isNumeric) num=Integer.parseInt(numStr); else num = 0;
+            
+        String city=txtCity.getText().trim();
+        String postcode=txtPostcode.getText().trim();
         String login;
         String password;
         Date dob;
-        String errorMessage ="";
+        
+        String errorMessage="";
         lblError.setVisible(false);
-        if(firstname.length() < 2)
+        if(firstname.length()<2)
             errorMessage+="Invalid first name! ";
-        if(lastname.length() < 2)
+        if(lastname.length()<2)
             errorMessage+="Invalid last name! ";
-        if(errorMessage.length() > 0){
+        if(errorMessage.length()>0){
             lblError.setText(errorMessage);
             lblError.setVisible(true);
             return;
         }
-        if(street.length() < 3)
+        
+        if(street.length()<3)
             errorMessage+="Invalid street! ";
-        if(city.length() < 2)
+        if(city.length()<2)
             errorMessage+="Invalid city! ";
-        if(postcode.length() != 5)
+        if(postcode.length()!=5)
             errorMessage+="Invalid postcode! ";
-        if(errorMessage.length() > 0){
+        
+        if(errorMessage.length()>0){
             lblError.setText(errorMessage);
             lblError.setVisible(true);
             return;
         }
-        dob =dateChooserCombo1.getCurrent().getTime();
-        login =txtLogin.getText().trim();
-        if(login.length() < 4){
+        dob=dateChooserCombo1.getCurrent().getTime();
+        login=txtLogin.getText().trim();
+        if(login.length()<4){
             errorMessage+="Invalid login (at least 4 characters) !";
             lblError.setText(errorMessage);
             lblError.setVisible(true);
@@ -319,16 +327,18 @@ public class NewClientForm extends javax.swing.JDialog{
             lblError.setVisible(true);
             return;
         }
-        password =txtPassword.getText().trim();
-        login =txtLogin.getText().trim();
-        if(password.length() < 6){
+                
+                
+        password=txtPassword.getText().trim();
+        login=txtLogin.getText().trim();
+        if(password.length()<6){
             errorMessage+="Invalid password (at least 6 characters) !";
             lblError.setText(errorMessage);
             lblError.setVisible(true);
             return;
         }
-        Client client =new Client(0,lastname,firstname,email,street,num,postcode,login,false,false,dob,city);
-        new ConnectionProvider().insertNewClient(client,password);
+        Client client = new Client(0, lastname,firstname,email, street, num, postcode, login, false, false, dob,city );
+        new ConnectionProvider().insertNewClient(client, password);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -11,16 +11,22 @@ import glbank.database.ConnectionProvider;
  *
  * @author client
  */
-public class ChangePasswordForm extends javax.swing.JDialog{
+public class ChangePasswordForm extends javax.swing.JDialog {
+
     private int idemp;
-    
-    public ChangePasswordForm(java.awt.Frame parent,boolean modal,int idemp){
-        super(parent,modal);
+
+
+    /**
+     * Creates new form ChangePasswordForm
+     */
+    public ChangePasswordForm(java.awt.Frame parent, boolean modal, int idemp) {
+        super(parent, modal);
         initComponents();
-        this.idemp =idemp;
+        this.idemp=idemp;
         lblPasswordsMatch.setVisible(false);
         lblOldPasswordsIncorect.setVisible(false);
         lblInvalidPassword.setVisible(false);
+        
     }
 
     /**
@@ -170,15 +176,16 @@ public class ChangePasswordForm extends javax.swing.JDialog{
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
-        String oldPassword =new String(txtOldPassword.getPassword());
-        String newPassword1 =new String(txtNewPassword1.getPassword());
-        String newPassword2 =new String(txtNewPassword2.getPassword());   
-        boolean validPassword =false;
+        String oldPassword=new String(txtOldPassword.getPassword());
+        String newPassword1=new String(txtNewPassword1.getPassword());
+        String newPassword2=new String(txtNewPassword2.getPassword());
+        
+        boolean validPassword=false;
         lblInvalidPassword.setVisible(false);
-        boolean samePasswords =newPassword1.equals(newPassword2);
+        boolean samePasswords=newPassword1.equals(newPassword2);
         if(samePasswords){
             lblPasswordsMatch.setVisible(false);
-            validPassword =isPasswordValid(newPassword1);
+            validPassword=isPasswordValid(newPassword1);
             if(!validPassword){
                 lblInvalidPassword.setVisible(true);
             }
@@ -186,19 +193,24 @@ public class ChangePasswordForm extends javax.swing.JDialog{
         else{
             lblPasswordsMatch.setVisible(true);
         }
-        boolean correctOldPassword =new ConnectionProvider().isEmployeePasswordValid(idemp, oldPassword);
+        
+        boolean correctOldPassword = new ConnectionProvider().isEmployeePasswordValid(idemp, oldPassword);
         if(correctOldPassword){
             lblOldPasswordsIncorect.setVisible(false);
         }
         else{
             lblOldPasswordsIncorect.setVisible(true);
         }
+        
         if(correctOldPassword && samePasswords && validPassword){
-            ConnectionProvider conn =new ConnectionProvider();
-            conn.changePassword(idemp,newPassword1);
+            ConnectionProvider conn=new ConnectionProvider();
+            conn.changePassword(idemp, newPassword1);
             this.dispose();
         }
     }//GEN-LAST:event_btnChangePasswordActionPerformed
+
+      
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
@@ -216,22 +228,22 @@ public class ChangePasswordForm extends javax.swing.JDialog{
     // End of variables declaration//GEN-END:variables
 
     private boolean isPasswordValid(String newPassword) {
-        newPassword =newPassword.trim();
-        if(newPassword.length() <6)
+        newPassword = newPassword.trim();
+        if(newPassword.length()<6)
             return false;
-        boolean lowLetter =false;
-        boolean upperLetter =false;
-        boolean digit =false;
-        boolean nonAlphaNum =false;
-        for(int i=0; i<newPassword.length(); i++){
+        boolean lowLetter=false;
+        boolean upperLetter=false;
+        boolean digit=false;
+        boolean nonAlphaNum=false;
+        for(int i=0;i<newPassword.length(); i++){
             if(Character.isLowerCase(newPassword.charAt(i)))
-                    lowLetter =true;
+                    lowLetter=true;
             if(Character.isUpperCase(newPassword.charAt(i)))
-                    upperLetter =true;
+                    upperLetter=true;
             if(Character.isDigit(newPassword.charAt(i)))
-                    digit =true;
+                    digit=true;
             if(!Character.isLetter(newPassword.charAt(i)) && !Character.isDigit(newPassword.charAt(i)))
-                    nonAlphaNum =true;
+                    nonAlphaNum=true;
         }
         return lowLetter && upperLetter && digit && nonAlphaNum;
     }

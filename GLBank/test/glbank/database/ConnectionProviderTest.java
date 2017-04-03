@@ -18,159 +18,174 @@ import static org.junit.Assert.*;
  *
  * @author client
  */
-public class ConnectionProviderTest{
+public class ConnectionProviderTest {
     
-    public ConnectionProviderTest(){
+    // konstruktor
+    public ConnectionProviderTest() {
     }
     
     @BeforeClass
-    public static void setUpClass(){
+    public static void setUpClass() {
     }
     
     @AfterClass
-    public static void tearDownClass(){
+    public static void tearDownClass() {
     }
     
     @Before
-    public void setUp(){
+    public void setUp() {
     }
     
     @After
-    public void tearDown(){
+    public void tearDown() {
     }
 
     /**
      * Test of isEmployeePasswordValid method, of class ConnectionProvider.
      */
     @Test
-    public void testIsEmployeePasswordValid1(){
+    public void testIsEmployeePasswordValid1() {
         System.out.println("isEmployeePasswordValid");
-        String username ="molnar";
-        String password ="molnar";
-        ConnectionProvider instance =new ConnectionProvider();
-        boolean expResult =true;
-        boolean result =instance.isEmployeePasswordValid(username,password);
-        assertEquals(expResult,result);
+        String username = "molnar";
+        String password = "molnar";
+        ConnectionProvider instance = new ConnectionProvider();
+        boolean expResult = true;
+        boolean result = instance.isEmployeePasswordValid(username, password);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
+        
     }
 
-    public void testIsEmployeePasswordValid2(){
+    public void testIsEmployeePasswordValid2() {
         System.out.println("isEmployeePasswordValid");
-        String username ="molnar";
-        String password ="molnar";
-        ConnectionProvider instance =new ConnectionProvider();
-        boolean expResult =false;
-        boolean result =instance.isEmployeePasswordValid(username,password);
-        assertEquals(expResult,result);
+        String username = "molnar";
+        String password = "molnar";
+        ConnectionProvider instance = new ConnectionProvider();
+        boolean expResult = false;
+        boolean result = instance.isEmployeePasswordValid(username, password);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
+        
     }
     
     @Test
-    public void testIsEmployeePasswordValid3(){
+    public void testIsEmployeePasswordValid3() {
         System.out.println("isEmployeePasswordValid");
-        int idemp =2;
-        String password ="molnar";
-        ConnectionProvider instance =new ConnectionProvider();
-        boolean expResult =true;
-        boolean result =instance.isEmployeePasswordValid(idemp,password);
-        assertEquals(expResult,result);
+        int idemp = 2;
+        String password = "molnar";
+        ConnectionProvider instance = new ConnectionProvider();
+        boolean expResult = true;
+        boolean result = instance.isEmployeePasswordValid(idemp, password);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
+        
     }
     
         @Test
-        public void testIsEmployeePasswordValid4(){
+        public void testIsEmployeePasswordValid4() {
         System.out.println("isEmployeePasswordValid");
-        int idemp =2;
-        String password ="moLnar";
-        ConnectionProvider instance =new ConnectionProvider();
-        boolean expResult =false;
-        boolean result =instance.isEmployeePasswordValid(idemp,password);
-        assertEquals(expResult,result);
+        int idemp = 2;
+        String password = "moLnar";
+        ConnectionProvider instance = new ConnectionProvider();
+        boolean expResult = false;
+        boolean result = instance.isEmployeePasswordValid(idemp, password);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
+        
     }
     
     /**
      * Test of getEmployeeId method, of class ConnectionProvider.
      */
     @Test
-    public void testGetEmployeeId1(){
+    public void testGetEmployeeId1() {
         System.out.println("getEmployeeId");
-        String username ="molnar";
-        ConnectionProvider instance =new ConnectionProvider();
-        int expResult =2;
-        int result =instance.getEmployeeId(username);
-        assertEquals(expResult,result);
+        String username = "molnar";
+        ConnectionProvider instance = new ConnectionProvider();
+        int expResult = 2;
+        int result = instance.getEmployeeId(username);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
+       
     }
 
     /**
      * Test of getEmployeeId method, of class ConnectionProvider.
      */
     @Test
-    public void testGetEmployeeId2(){
+    public void testGetEmployeeId2() {
         System.out.println("getEmployeeId");
-        String username ="x7e7r89";
-        ConnectionProvider instance =new ConnectionProvider();
-        int expResult =-1;
-        int result =instance.getEmployeeId(username);
-        assertEquals(expResult,result);
+        String username = "x7e7r89";
+        ConnectionProvider instance = new ConnectionProvider();
+        int expResult = -1;
+        int result = instance.getEmployeeId(username);
+        assertEquals(expResult, result);
     }
     
     /**
      * Test of getEmployeeId method, of class ConnectionProvider.
      */
     @Test
-    public void testGetEmployeeId3(){
+    public void testGetEmployeeId3() {
         System.out.println("getEmployeeId");
-        String username ="molnaR";
-        ConnectionProvider instance =new ConnectionProvider();
-        int expResult =-1;
-        int result =instance.getEmployeeId(username);
-        assertEquals(expResult,result);
+        String username = "molnaR";
+        ConnectionProvider instance = new ConnectionProvider();
+        int expResult = -1;
+        int result = instance.getEmployeeId(username);
+        assertEquals(expResult, result);
     }
     
+    
+
     /**
      * Test of getEmployee method, of class ConnectionProvider.
      */
     @Test
-    public void testGetEmployee(){
+    public void testGetEmployee() {
         System.out.println("getEmployee");
-        int id =2;
-        ConnectionProvider instance =new ConnectionProvider();
-        Employee result =instance.getEmployee(id);
-        assertEquals("Daniel",result.getFirstname());
-        assertEquals("Molnar",result.getLastname());
-        assertEquals(2,result.getIdemp());
-        assertEquals("molnar@pobox.sk",result.getEmail());
-        assertEquals('C',result.getPosition());
+        int id = 2;
+        ConnectionProvider instance = new ConnectionProvider();
+        
+        Employee result = instance.getEmployee(id);
+        assertEquals("Daniel", result.getFirstname());
+        assertEquals("Molnar", result.getLastname());
+        assertEquals(2, result.getIdemp());
+        assertEquals("molnar@pobox.sk", result.getEmail());
+        assertEquals('C', result.getPosition());
+        
+        
     }
     
     /**
      * Test of getEmployee method, of class ConnectionProvider.
      */
     @Test
-    public void testGetClient(){
+    public void testGetClient() {
         System.out.println("getClient");
-        int id =1;
-        ConnectionProvider instance =new ConnectionProvider();
-        Client result =instance.getClient(id);
-        assertEquals("Dominik",result.getFirstname());
-        assertEquals("Kovac",result.getLastname());
-        assertEquals("kovac@zoznam.sk",result.getEmail());    
+        int id = 1;
+        ConnectionProvider instance = new ConnectionProvider();
+        
+        Client result = instance.getClient(id);
+        assertEquals("Dominik", result.getFirstname());
+        assertEquals("Kovac", result.getLastname());
+        assertEquals("kovac@zoznam.sk", result.getEmail());    
     }
     
     /**
      * Test of getEmployee method, of class ConnectionProvider.
      */
     @Test
-    public void testExistsUsername(){
+    public void testExistsUsername() {
         System.out.println("existsUsername");
-        String username ="kovac";
-        String username2 ="kra658bumham";
-        ConnectionProvider instance =new ConnectionProvider();
-        boolean result =instance.existUsername(username);
+        String username="kovac";
+        String username2="kra658bumham";
+        ConnectionProvider instance = new ConnectionProvider();
+        
+        boolean result = instance.existUsername(username);
         assertTrue(result);
-        result =instance.existUsername(username2);
-        assertFalse(result);
+       
+        result = instance.existUsername(username2);
+        assertFalse( result);
+        
     }
 }

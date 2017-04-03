@@ -13,7 +13,12 @@ import java.util.Arrays;
  * @author client
  */
 public class LoginForm extends javax.swing.JFrame {
-    public LoginForm() {        
+
+    /**
+     * Creates new form LoginForm
+     */
+    public LoginForm() {
+        
         initComponents();
         lblErrorMessage.setText("");
     }
@@ -136,17 +141,18 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String login =txtLogin.getText();
-        char[] charpassword =txtPassword.getPassword();
-        String password =new String(charpassword);        
+        String login = txtLogin.getText();
+        char[] charpassword = txtPassword.getPassword();
+        String password = new String(charpassword);
+        
         if( !login.equals("") &&  password.length()>=3 ){
-            ConnectionProvider connection =new ConnectionProvider();
-            if(connection.isEmployeePasswordValid(login,password)){
+            ConnectionProvider connection=new ConnectionProvider();
+            if(connection.isEmployeePasswordValid(login, password)){
                 System.out.println("Password OK");
                 lblErrorMessage.setText("");
                 int id=connection.getEmployeeId(login);
                 connection.logEmployeeAccess(id);
-                MainForm mainForm =new MainForm(id);
+                MainForm mainForm = new MainForm(id);
                 this.setVisible(false);
                 mainForm.setVisible(true);
             }
@@ -155,6 +161,7 @@ public class LoginForm extends javax.swing.JFrame {
                 System.out.println("Invalid password");
             }
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
